@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BattleCharacter.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
 #include "ProjectGameCharacter.generated.h"
@@ -14,6 +15,8 @@ class UInputAction;
 struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
+
+class AInventory_Base;
 
 UCLASS(config=Game)
 class AProjectGameCharacter : public ACharacter
@@ -63,6 +66,12 @@ protected:
 	
 	// To add mapping context
 	virtual void BeginPlay();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+	AInventory_Base* CurrInventory;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+	TArray<ABattleCharacter*> BattleCharacters;
 
 public:
 	/** Returns CameraBoom subobject **/

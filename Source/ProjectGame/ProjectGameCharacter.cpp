@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "ProjectGameCharacter.h"
+#include "Inventory_Base.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -58,6 +59,9 @@ void AProjectGameCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+	
+	AInventory_Base* my_inventory = GetWorld()->SpawnActor<AInventory_Base>(AInventory_Base::StaticClass());
+	CurrInventory = my_inventory;
 }
 
 //////////////////////////////////////////////////////////////////////////
