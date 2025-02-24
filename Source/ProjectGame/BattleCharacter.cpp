@@ -2,6 +2,8 @@
 
 
 #include "BattleCharacter.h"
+#include "Enemy.h"
+#include "Items.h"
 
 // Sets default values
 ABattleCharacter::ABattleCharacter()
@@ -32,3 +34,36 @@ void ABattleCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 }
 
+int ABattleCharacter::Attack() 
+{
+	int Damage = ATK + Weapon->strength;
+
+	TargetEnemy->GetHit(Damage);
+	return Damage;
+}
+int ABattleCharacter::GetHit(int damage)
+{
+	HP -= damage - (DEF + Armor->strength);
+
+	if (HP <= 0) 
+	{
+		dead_flag = true;
+		HP = 0;
+	}
+
+	return HP;
+}
+int ABattleCharacter::Healed(int ammount_healed)
+{
+	HP += ammount_healed;
+	if (HP > Max_HP) 
+	{
+		HP = Max_HP;
+	}
+	
+	return HP;
+}
+int ABattleCharacter::GainEXP(int exp_gained)
+{
+	return 0;
+}
