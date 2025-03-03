@@ -76,3 +76,13 @@ TArray<FInventoryItem> AInventory_Base::Sort(FString type)
 
 	return sorted_list;
 }
+
+FString AInventory_Base::GetName(int index) 
+{
+	return CurrInventory[index].ItemName;
+}
+
+int AInventory_Base::GetQuantity(int index)
+{
+	return CurrInventory[index].Quantity;
+}
