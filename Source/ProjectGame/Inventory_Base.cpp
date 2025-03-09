@@ -32,15 +32,16 @@ void AInventory_Base::AddItems(AItems* new_item)
 	bool found = false;
 	for (int i = 0; i < CurrInventory.Num(); i++) 
 	{
-		if (CurrInventory[i].ItemName == new_item->name) {
-			CurrInventory[i].Quantity++;
+		if (CurrInventory[i]->name == new_item->name) {
+			CurrInventory[i]->quantity++;
 			found = true;
 		}
 	}
 
 	if (found == false)
 	{
-		CurrInventory.Add(FInventoryItem(new_item->name, new_item, 1));
+		new_item->quantity = 1;
+		CurrInventory.Add(new_item);
 	}
 
 }
@@ -50,11 +51,11 @@ bool AInventory_Base::RemoveItem(AItems* rem_item)
 	bool found = false;
 	for (int i = 0; i < CurrInventory.Num(); i++)
 	{
-		if (CurrInventory[i].ItemName == rem_item->name) {
-			CurrInventory[i].Quantity--;
+		if (CurrInventory[i]->name == rem_item->name) {
+			CurrInventory[i]->quantity--;
 			found = true;
-			if (CurrInventory[i].Quantity <= 0) {
-				const FInventoryItem temp = CurrInventory[i];
+			if (CurrInventory[i]->quantity <= 0) {
+				const AItems* temp = CurrInventory[i];
 				CurrInventory.RemoveAt(i, 1, true);
 			}
 		}
@@ -69,8 +70,8 @@ TArray<AItems*> AInventory_Base::Sort(FString type)
 
 	for (int i = 0; i < CurrInventory.Num(); i++)
 	{
-		if (CurrInventory[i].ItemRef->type == type) {
-			sorted_list.Add(CurrInventory[i].ItemRef);
+		if (CurrInventory[i]->type == type) {
+			sorted_list.Add(CurrInventory[i]);
 		}
 	}
 
@@ -79,10 +80,10 @@ TArray<AItems*> AInventory_Base::Sort(FString type)
 
 FString AInventory_Base::GetName(int index) 
 {
-	return CurrInventory[index].ItemName;
+	return CurrInventory[index]->name;
 }
 
 int AInventory_Base::GetQuantity(int index)
 {
-	return CurrInventory[index].Quantity;
+	return CurrInventory[index]->quantity;
 }

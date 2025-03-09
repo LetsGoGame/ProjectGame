@@ -8,28 +8,28 @@
 #include "Inventory_Base.generated.h"
 
 // Move FInventoryItem ABOVE AInventory_Base
-USTRUCT(BlueprintType)
-struct FInventoryItem
-{
-    GENERATED_BODY()
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-    FString ItemName;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-    AItems* ItemRef;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-    int32 Quantity;
-
-    // Default constructor
-    FInventoryItem() : ItemName(TEXT("")), ItemRef(nullptr), Quantity(0) {}
-
-    // Constructor for easy initialization
-    FInventoryItem(FString Name, AItems* Item, int32 Qty)
-        : ItemName(Name), ItemRef(Item), Quantity(Qty) {
-    }
-};
+//USTRUCT(BlueprintType)
+//struct FInventoryItem
+//{
+//    GENERATED_BODY()
+//
+//    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+//    FString ItemName;
+//
+//    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+//    AItems* ItemRef;
+//
+//    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+//    int32 Quantity;
+//
+//    // Default constructor
+//    FInventoryItem() : ItemName(TEXT("")), ItemRef(nullptr), Quantity(0) {}
+//
+//    // Constructor for easy initialization
+//    FInventoryItem(FString Name, AItems* Item, int32 Qty)
+//        : ItemName(Name), ItemRef(Item), Quantity(Qty) {
+//    }
+//};
 
 UCLASS(Blueprintable)
 class PROJECTGAME_API AInventory_Base : public AActor
@@ -57,7 +57,7 @@ public:
 
     // Now this is correctly placed AFTER FInventoryItem is defined
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-    TArray<FInventoryItem> CurrInventory;
+    TArray<AItems*> CurrInventory;
 
 protected:
     virtual void BeginPlay() override;
