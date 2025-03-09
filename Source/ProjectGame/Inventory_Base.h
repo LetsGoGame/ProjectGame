@@ -31,7 +31,7 @@ struct FInventoryItem
     }
 };
 
-UCLASS()
+UCLASS(Blueprintable)
 class PROJECTGAME_API AInventory_Base : public AActor
 {
     GENERATED_BODY()
@@ -47,7 +47,7 @@ public:
     bool RemoveItem(AItems* rem_item);
 
     UFUNCTION(BlueprintCallable, Category = "Change")
-    TArray<FInventoryItem> Sort(FString type);
+    TArray<AItems*> Sort(FString type);
 
     UFUNCTION(BlueprintCallable, Category = "Change")
     FString GetName(int index);

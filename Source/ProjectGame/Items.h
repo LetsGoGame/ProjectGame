@@ -31,6 +31,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Property")
 	FString name = "";
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Property")
+	int quantity = 0;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

@@ -63,14 +63,14 @@ bool AInventory_Base::RemoveItem(AItems* rem_item)
 	return found;
 }
 
-TArray<FInventoryItem> AInventory_Base::Sort(FString type)
+TArray<AItems*> AInventory_Base::Sort(FString type)
 {
-	TArray<FInventoryItem> sorted_list;
+	TArray<AItems*> sorted_list;
 
 	for (int i = 0; i < CurrInventory.Num(); i++)
 	{
 		if (CurrInventory[i].ItemRef->type == type) {
-			sorted_list.Add(CurrInventory[i]);
+			sorted_list.Add(CurrInventory[i].ItemRef);
 		}
 	}
 
