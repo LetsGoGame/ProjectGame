@@ -50,10 +50,10 @@ public:
     TArray<AItems*> Sort(FString type);
 
     UFUNCTION(BlueprintCallable, Category = "Change")
-    FString GetName(int index);
+    FString GetName(AItems* item);
 
     UFUNCTION(BlueprintCallable, Category = "Change")
-    int GetQuantity(int index);
+    int GetQuantity(AItems* item);
 
     // Now this is correctly placed AFTER FInventoryItem is defined
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")

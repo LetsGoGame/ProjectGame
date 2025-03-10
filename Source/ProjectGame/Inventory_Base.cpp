@@ -78,12 +78,12 @@ TArray<AItems*> AInventory_Base::Sort(FString type)
 	return sorted_list;
 }
 
-FString AInventory_Base::GetName(int index) 
+FString AInventory_Base::GetName(AItems* item) 
 {
-	return CurrInventory[index]->name;
+	return item->name;
 }
 
-int AInventory_Base::GetQuantity(int index)
+int AInventory_Base::GetQuantity(AItems* item)
 {
-	return CurrInventory[index]->quantity;
+	return item->quantity;
 }
