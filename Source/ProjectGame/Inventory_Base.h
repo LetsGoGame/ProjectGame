@@ -1,35 +1,9 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
-
-#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
-#include "Items.h"
 #include "GameFramework/Actor.h"
+#include "Item_Base.h" // Include the struct header
 #include "Inventory_Base.generated.h"
-
-// Move FInventoryItem ABOVE AInventory_Base
-//USTRUCT(BlueprintType)
-//struct FInventoryItem
-//{
-//    GENERATED_BODY()
-//
-//    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-//    FString ItemName;
-//
-//    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-//    AItems* ItemRef;
-//
-//    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-//    int32 Quantity;
-//
-//    // Default constructor
-//    FInventoryItem() : ItemName(TEXT("")), ItemRef(nullptr), Quantity(0) {}
-//
-//    // Constructor for easy initialization
-//    FInventoryItem(FString Name, AItems* Item, int32 Qty)
-//        : ItemName(Name), ItemRef(Item), Quantity(Qty) {
-//    }
-//};
 
 UCLASS(Blueprintable)
 class PROJECTGAME_API AInventory_Base : public AActor
@@ -41,23 +15,22 @@ public:
     AInventory_Base();
 
     UFUNCTION(BlueprintCallable, Category = "Change")
-    void AddItems(AItems* new_item);
+    void AddItem(FItem_Base& NewItem);
 
     UFUNCTION(BlueprintCallable, Category = "Change")
-    bool RemoveItem(AItems* rem_item);
+    bool RemoveItem(FItem_Base& ItemToRemove);
 
     UFUNCTION(BlueprintCallable, Category = "Change")
-    TArray<AItems*> Sort(FString type);
+    TArray<FItem_Base> Sort(const FString& Type);
 
     UFUNCTION(BlueprintCallable, Category = "Change")
-    FString GetName(AItems* item);
+    FString GetItemName(const FItem_Base& Item) const;
 
     UFUNCTION(BlueprintCallable, Category = "Change")
-    int GetQuantity(AItems* item);
+    int GetItemQuantity(const FItem_Base& Item) const;
 
-    // Now this is correctly placed AFTER FInventoryItem is defined
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-    TArray<AItems*> CurrInventory;
+    TArray<FItem_Base> CurrInventory;
 
 protected:
     virtual void BeginPlay() override;

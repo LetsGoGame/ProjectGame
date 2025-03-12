@@ -27,35 +27,35 @@ void AInventory_Base::Tick(float DeltaTime)
 }
 
 // My functions
-void AInventory_Base::AddItems(AItems* new_item)
+void AInventory_Base::AddItem(FItem_Base& new_item)
 {
 	bool found = false;
 	for (int i = 0; i < CurrInventory.Num(); i++) 
 	{
-		if (CurrInventory[i]->name == new_item->name) {
-			CurrInventory[i]->quantity++;
+		if (CurrInventory[i].name == new_item.name) {
+			CurrInventory[i].quantity++;
 			found = true;
 		}
 	}
 
 	if (found == false)
 	{
-		new_item->quantity = 1;
+		new_item.quantity = 1;
 		CurrInventory.Add(new_item);
 	}
 
 }
 
-bool AInventory_Base::RemoveItem(AItems* rem_item)
+bool AInventory_Base::RemoveItem(FItem_Base& rem_item)
 {
 	bool found = false;
 	for (int i = 0; i < CurrInventory.Num(); i++)
 	{
-		if (CurrInventory[i]->name == rem_item->name) {
-			CurrInventory[i]->quantity--;
+		if (CurrInventory[i].name == rem_item.name) {
+			CurrInventory[i].quantity--;
 			found = true;
-			if (CurrInventory[i]->quantity <= 0) {
-				const AItems* temp = CurrInventory[i];
+			if (CurrInventory[i].quantity <= 0) {
+				FItem_Base temp = CurrInventory[i];
 				CurrInventory.RemoveAt(i, 1, true);
 			}
 		}
@@ -64,13 +64,13 @@ bool AInventory_Base::RemoveItem(AItems* rem_item)
 	return found;
 }
 
-TArray<AItems*> AInventory_Base::Sort(FString type)
+TArray<FItem_Base> AInventory_Base::Sort(const FString& type)
 {
-	TArray<AItems*> sorted_list;
+	TArray<FItem_Base> sorted_list;
 
 	for (int i = 0; i < CurrInventory.Num(); i++)
 	{
-		if (CurrInventory[i]->type == type) {
+		if (CurrInventory[i].type == type) {
 			sorted_list.Add(CurrInventory[i]);
 		}
 	}
@@ -78,12 +78,12 @@ TArray<AItems*> AInventory_Base::Sort(FString type)
 	return sorted_list;
 }
 
-FString AInventory_Base::GetName(AItems* item) 
+FString AInventory_Base::GetItemName(const FItem_Base& item) const
 {
-	return item->name;
+	return item.name;
 }
 
-int AInventory_Base::GetQuantity(AItems* item)
+int AInventory_Base::GetItemQuantity(const FItem_Base& item) const
 {
-	return item->quantity;
+	return item.quantity;
 }
