@@ -14,6 +14,9 @@ public:
     // Sets default values for this actor's properties
     AInventory_Base();
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+    int money = 0;
+
     UFUNCTION(BlueprintCallable, Category = "Change")
     void AddItem(FItem_Base& NewItem);
 
