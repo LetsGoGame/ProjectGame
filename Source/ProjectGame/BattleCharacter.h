@@ -34,6 +34,8 @@ protected:
 
 	// Varibles
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	FString Name;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	int Max_HP;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	int HP;
