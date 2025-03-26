@@ -67,8 +67,8 @@ protected:
 	// To add mapping context
 	virtual void BeginPlay();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
-	AInventory_Base* CurrInventory;
+	/*UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+	AInventory_Base* CurrInventory;*/
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
 	TArray<ABattleCharacter*> BattleCharacters;

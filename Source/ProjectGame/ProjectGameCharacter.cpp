@@ -60,8 +60,8 @@ void AProjectGameCharacter::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 	
-	AInventory_Base* my_inventory = GetWorld()->SpawnActor<AInventory_Base>(AInventory_Base::StaticClass());
-	CurrInventory = my_inventory;
+	/*AInventory_Base* my_inventory = GetWorld()->SpawnActor<AInventory_Base>(AInventory_Base::StaticClass());
+	CurrInventory = my_inventory;*/
 }
 
 //////////////////////////////////////////////////////////////////////////
